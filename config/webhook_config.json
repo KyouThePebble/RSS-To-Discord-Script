@@ -1,0 +1,12 @@
+[
+    {
+        "source_name": "@BBC_News",
+        "source_rss": "https://feeds.bbci.co.uk/news/rss.xml",
+        "destination_webhook": "your_webhook1"
+    },
+    {
+        "source_name": "@CNN",
+        "source_rss": "http://rss.cnn.com/rss/edition.rss",
+        "destination_webhook": "your_webhook2"
+    }
+]
