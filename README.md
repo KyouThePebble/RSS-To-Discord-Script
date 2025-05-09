@@ -5,7 +5,7 @@ A Python bot that reads multiple RSS feeds and sends new entries to Discord chan
 ---
 
 ## 📦 Installation
-
+> **Requires Python 3.10 or higher.** (Tested on 3.13.3)
 ```bash
 git clone <your_repo_url>
 cd <your_repo_name>
