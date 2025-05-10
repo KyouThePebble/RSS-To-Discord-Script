@@ -34,8 +34,9 @@ def check_feed(config, last_entries=5):
     config_name = source_name.replace("@", "").replace(" ", "_")
 
     print(f"🔍 Checking feed: {source_name}")
+    print(f"\t- Parsing RSS url: {rss_url}")
     feed = feedparser.parse(rss_url)
-    print(f"Raw feed response: {feed}")
+    print(f"\t- Raw feed response: {feed}")
     sent_entries = load_sent_entries(config_name)
 
     new_entries = [entry for entry in reversed(feed.entries[:last_entries]) if entry.id not in sent_entries]
