@@ -27,7 +27,7 @@ def send_to_discord(webhook_url, message):
     if response.status_code != 204:
         print(f"❌ Discord Error: {response.status_code} - {response.text}")
 
-def check_feed(config):
+def check_feed(config, last_entries=5):
     source_name = config["source_name"]
     rss_url = config["source_rss"]
     webhook_url = config["destination_webhook"]
@@ -37,10 +37,16 @@ def check_feed(config):
     feed = feedparser.parse(rss_url)
     sent_entries = load_sent_entries(config_name)
 
-    new_entries = [entry for entry in feed.entries if entry.id not in sent_entries]
+    new_entries = [entry for entry in reversed(feed.entries[:last_entries]) if entry.id not in sent_entries]
 
-    for entry in reversed(new_entries):
-        message = f"📢 New post from {source_name}:\n{entry.title}\n{entry.link}"
+    for entry in new_entries:
+        published = entry.get("published", "Unknown Date")
+        message = (
+            f"```fix\n📢 New post from {source_name}\n```\n"
+            f"🗓️ **Date:** {published}\n"
+            f"📄 **Title:** {entry.title}\n"
+            f"🔗 {entry.link}"
+        )
         send_to_discord(webhook_url, message)
         save_sent_entry(config_name, entry.id)
 
