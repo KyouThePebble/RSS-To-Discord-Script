@@ -35,6 +35,7 @@ def check_feed(config, last_entries=5):
 
     print(f"🔍 Checking feed: {source_name}")
     feed = feedparser.parse(rss_url)
+    print(f"Raw feed response: {feed}")
     sent_entries = load_sent_entries(config_name)
 
     new_entries = [entry for entry in reversed(feed.entries[:last_entries]) if entry.id not in sent_entries]
@@ -56,10 +57,10 @@ def check_feed(config, last_entries=5):
         print(f"📭 No new entries from {source_name}.")
 
 def main(config_path, interval):
-    with open(config_path, "r", encoding="utf-8") as f:
-        configs = json.load(f)
-
     while True:
+        with open(config_path, "r", encoding="utf-8") as f:
+            print(f"Loading config file: {config_path}")
+            configs = json.load(f)
         try:
             for config in configs:
                 check_feed(config)
