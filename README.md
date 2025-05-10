@@ -26,12 +26,16 @@ Create a `webhook_config.json` file in the `config` folder (example):
     {
         "source_name": "@BBC_News",
         "source_rss": "https://feeds.bbci.co.uk/news/rss.xml",
-        "destination_webhook": "your_webhook1"
+        "destination_webhook": "your_webhook1",
+        "username": null,
+        "password": null
     },
     {
         "source_name": "@CNN",
         "source_rss": "http://rss.cnn.com/rss/edition.rss",
-        "destination_webhook": "your_webhook2"
+        "destination_webhook": "your_webhook2",
+        "username": null,
+        "password": null
     }
 ]
 ```
@@ -51,3 +55,9 @@ With a custom interval (e.g., every 60 seconds):
 ```bash
 python project/rss_to_discord.py --config config/webhook_config.json --interval 60
 ```
+
+You can preview detailed response from RSS urls if you set logging level to DEBUG:
+```bash
+python project/rss_to_discord.py --config config/webhook_config.json --loglevel DEBUG
+```
+

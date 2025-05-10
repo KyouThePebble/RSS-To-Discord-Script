@@ -2,11 +2,15 @@
     {
         "source_name": "@BBC_News",
         "source_rss": "https://feeds.bbci.co.uk/news/rss.xml",
-        "destination_webhook": "your_webhook1"
+        "destination_webhook": "your_webhook1",
+        "username": null,
+        "password": null
     },
     {
         "source_name": "@CNN",
         "source_rss": "http://rss.cnn.com/rss/edition.rss",
-        "destination_webhook": "your_webhook2"
+        "destination_webhook": "your_webhook2",
+        "username": null,
+        "password": null
     }
 ]
